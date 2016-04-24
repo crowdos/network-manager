@@ -1,0 +1,3 @@
+[submodule "NetworkManager"]
+	path = NetworkManager
+	url = git://anongit.freedesktop.org/NetworkManager/NetworkManager.git
