@@ -1,0 +1,206 @@
+Source: network-manager
+Section: net
+Priority: optional
+Maintainer: Mohammed Sameer <msameer@foolab.org>
+Build-Depends: debhelper (>= 9),
+               dh-autoreconf,
+               dpkg-dev (>= 1.17.14),
+               pkg-config,
+               quilt,
+               intltool,
+               libdbus-glib-1-dev (>= 0.100),
+               libglib2.0-dev (>= 2.32),
+               ppp-dev,
+               libpolkit-agent-1-dev (>= 0.97),
+               libgnutls28-dev (>= 2.12),
+               uuid-dev,
+               libgudev-1.0-dev (>= 165),
+               libsoup2.4-dev (>= 2.40),
+               gtk-doc-tools,
+               libnl-3-dev (>= 3.2.8),
+               libmm-glib-dev (>=  0.7.991),
+               libndp-dev,
+               libreadline-dev,
+               libnewt-dev (>= 0.52.15),
+               libbluetooth-dev (>= 5),
+Standards-Version: 3.9.8
+Homepage: https://wiki.gnome.org/Projects/NetworkManager
+
+Package: network-manager
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         lsb-base (>= 3.2-14),
+         wpasupplicant (>= 0.7.3-1),
+         dbus (>= 1.1.2),
+         udev,
+         adduser,
+         isc-dhcp-client (>= 4.1.1-P1-4),
+         libpam-systemd,
+         policykit-1
+Recommends: ppp,
+            dnsmasq-base,
+            iptables,
+            modemmanager,
+            crda,
+            iputils-arping
+Breaks: ${misc:Breaks}
+Description: network management framework (daemon and userspace tools)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides the userspace daemons and a command line interface to
+ interact with NetworkManager.
+ .
+ Optional dependencies:
+  * ppp: Required for establishing dial-up connections (e.g. via GSM).
+  * dnsmasq-base/iptables: Required for creating Ad-hoc connections and
+    connection sharing.
+    address configuration.
+
+Package: network-manager-dev
+Section: devel
+Architecture: linux-any
+Depends: ${misc:Depends}
+Description: network management framework (development files)
+ this package provides header files that are needed to
+ compile VPN Plugins for NetworkManager.
+
+Package: libnm-glib4
+Section: libs
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: network management framework (GLib shared library)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides the shared library that applications can use to query
+ connection status via NetworkManager.
+
+Package: libnm-glib-dev
+Section: libdevel
+Architecture: linux-any
+Depends: ${misc:Depends},
+         libnm-glib4 (= ${binary:Version}),
+         gir1.2-networkmanager-1.0 (= ${binary:Version}),
+         libnm-util-dev (>= ${binary:Version}),
+         network-manager-dev (>= ${binary:Version}),
+         libglib2.0-dev,
+         libdbus-glib-1-dev
+Description: network management framework (GLib interface)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides the interface that applications can use to query
+ connection status via NetworkManager.
+
+Package: libnm-glib-vpn1
+Section: libs
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: network management framework (GLib VPN shared library)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides the shared library that applications can use for
+ creating VPN connections via NetworkManager.
+
+Package: libnm-glib-vpn-dev
+Section: libdevel
+Architecture: linux-any
+Depends: ${misc:Depends},
+         libnm-glib-vpn1 (= ${binary:Version}),
+         libnm-glib-dev (>= ${binary:Version}),
+         network-manager-dev (>= ${binary:Version}),
+Description: network management framework (GLib interface)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides the shared library that applications can use for
+ creating VPN connections via NetworkManager.
+
+Package: libnm-util2
+Section: libs
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: network management framework (shared library)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package contains a convenience library to ease the access to
+ NetworkManager.
+
+Package: libnm-util-dev
+Section: libdevel
+Architecture: linux-any
+Depends: ${misc:Depends},
+         libnm-util2 (= ${binary:Version}),
+         gir1.2-networkmanager-1.0 (= ${binary:Version}),
+         network-manager-dev (>= ${binary:Version}),
+         libglib2.0-dev,
+         libdbus-glib-1-dev
+Description: network management framework (development files)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package contains header and development files.
+
+Package: libnm0
+Section: libs
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: GObject-based client library for NetworkManager
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package contains a convenience library to ease the access to
+ NetworkManager.
+
+Package: libnm-dev
+Section: libdevel
+Architecture: linux-any
+Depends: ${misc:Depends},
+         libnm0 (= ${binary:Version}),
+         gir1.2-networkmanager-1.0 (= ${binary:Version}),
+         libglib2.0-dev
+Description: GObject-based client library for NetworkManager (development files)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package contains header and development files.

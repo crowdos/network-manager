@@ -1,0 +1,55 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with quilt,autoreconf --sourcedirectory=NetworkManager --parallel
+
+override_dh_autoreconf:
+	cd NetworkManager && NOCONFIGURE=1 ./autogen.sh
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--libexecdir=/usr/lib/NetworkManager \
+		--with-pppd-plugin-dir=/usr/lib/pppd/2.4.6 \
+		--with-pppd=/usr/sbin/pppd \
+		--with-resolvconf=/sbin/resolvconf \
+		--with-dhclient=/sbin/dhclient \
+		--with-iptables=/sbin/iptables \
+		--with-dnsmasq=/usr/sbin/dnsmasq \
+		--with-dnssec-trigger=/usr/lib/dnssec-trigger/dnssec-trigger-script \
+		--with-udev-dir=/lib/udev \
+		--with-crypto=gnutls \
+		--with-session-tracking=no \
+		--with-suspend-resume=upower \
+		--with-modem-manager-1 \
+		--with-nmtui \
+		--with-nmcli \
+		--disable-more-warnings \
+		--disable-modify-system \
+		--enable-polkit \
+		--enable-polkit-agent \
+		--enable-ppp \
+		--enable-ifupdown \
+		--enable-config-plugin-ibft \
+		--enable-introspection=no \
+		--enable-gtk-doc=no \
+		--enable-concheck \
+		--enable-teamdctl=no \
+		--enable-bluez5-dun \
+		--enable-wifi \
+		--enable-tests=no \
+		--enable-qt=no
+
+override_dh_install:
+	rm -rf debian/tmp/usr/lib/systemd/
+	dh_install -X.la --fail-missing
+	install -m 755 debian/network-manager-dispatcher.script \
+		debian/network-manager/etc/NetworkManager/dispatcher.d/01ifupdown
+	install -m 755 debian/ifblacklist_migrate.sh \
+		debian/network-manager/usr/lib/NetworkManager
+
+override_dh_auto_clean:
+	[ ! -f NetworkManager/Makefile ] || make -C NetworkManager distclean
+	dh_auto_clean

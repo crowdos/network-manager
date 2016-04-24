@@ -1,0 +1,3 @@
+usr/lib/*/pkgconfig/libnm.pc
+usr/lib/*/libnm.so
+usr/include/libnm/
