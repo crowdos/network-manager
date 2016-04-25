@@ -1,3 +1,4 @@
 fix-nm-sleep-monitor-upower.patch
 fix-arping-path.patch
 Fix-iscsiadm-path.patch
+Force-online-state-with-unmanaged-devices.patch
