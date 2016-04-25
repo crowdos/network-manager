@@ -1,0 +1,10 @@
+--- a/NetworkManager/src/nm-sleep-monitor-upower.c
++++ b/NetworkManager/src/nm-sleep-monitor-upower.c
+@@ -24,6 +24,7 @@
+ #include <sys/stat.h>
+ 
+ #include "nm-core-internal.h"
++#include "NetworkManagerUtils.h"
+ 
+ #include "nm-sleep-monitor.h"
+ 
