@@ -28,8 +28,8 @@ override_dh_auto_configure:
 		--with-nmcli \
 		--disable-more-warnings \
 		--disable-modify-system \
-		--enable-polkit \
-		--enable-polkit-agent \
+		--disable-polkit \
+		--disable-polkit-agent \
 		--enable-ppp \
 		--enable-ifupdown \
 		--enable-config-plugin-ibft \
