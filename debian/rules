@@ -40,7 +40,11 @@ override_dh_auto_configure:
 		--enable-bluez5-dun \
 		--enable-wifi \
 		--enable-tests=no \
-		--enable-qt=no
+		--enable-qt=no \
+		--enable-ifcfg-rh=no \
+		--enable-ifcfg-suse=no \
+		--enable-ifnet=no \
+		--with-netconfig=no
 
 override_dh_install:
 	rm -rf debian/tmp/usr/lib/systemd/
